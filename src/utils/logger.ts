@@ -1,6 +1,6 @@
 import pino from "pino";
 import stream from "pino-pretty";
-import dayjs from "dayjs";
+import config from "config";
 
 const pretty = stream({ levelFirst: true, colorize: true });
 
@@ -9,6 +9,7 @@ const logger = pino(
     base: {
       pid: false,
     },
+    level: "trace",
   },
   pretty
 );
