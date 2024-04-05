@@ -16,7 +16,7 @@ export function verifyJwt(token: string) {
     const decoded = jwt.verify(token, publicKey);
     return {
       valid: true,
-      expired: null,
+      expired: false,
       decoded,
     };
   } catch (e: any) {
