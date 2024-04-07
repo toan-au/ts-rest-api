@@ -21,13 +21,16 @@ export async function createProductHandler(
 ) {
   const userId = res.locals.user._id;
   const body = req.body;
+  logger.trace(body);
 
   try {
+    logger.trace("creating product...");
     const product = await createProduct({ ...body, user: userId });
+    logger.trace(`product created ${product}`);
     return res.send(product);
   } catch (e: any) {
     logger.error(e);
-    res.status(400).send("Could not create product");
+    return res.status(400).send("Could not create product");
   }
 }
 
@@ -40,7 +43,7 @@ export async function findProductHandler(
 
   const product = await findProduct({ productId });
 
-  if (!product) return res.status(404).send("Product not found");
+  if (!product) return res.sendStatus(404);
   if (product.user != userId) return res.sendStatus(403);
 
   return res.send(product);
