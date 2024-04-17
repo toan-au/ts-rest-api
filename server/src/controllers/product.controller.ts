@@ -1,5 +1,3 @@
-import { removeListener } from "process";
-import ProductModel from "../models/product.model";
 import {
   createProduct,
   deleteProduct,
