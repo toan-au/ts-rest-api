@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
 // If the password was modified
 // replace it with the salted hash
 userSchema.pre("save", async function (next) {
-  let user = this as UserDocument;
+  const user = this as UserDocument;
 
   if (user.isModified("password")) {
     const salt = await bcrypt.genSalt(config.get<number>("saltWorkFactor"));

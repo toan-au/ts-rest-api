@@ -4,7 +4,6 @@ import SessionModel, { SessionDocument } from "../models/session.model";
 import { signJwt, verifyJwt } from "../utils/jwt";
 import config from "config";
 import { findUser } from "./user.service";
-import logger from "../utils/logger";
 
 export async function createSession(userId: string, userAgent: string) {
   const session = await SessionModel.create({ user: userId, userAgent });

@@ -2,10 +2,10 @@ import { TypeOf, object, string } from "zod";
 
 export const createUserSchema = object({
   body: object({
-    name: string({ required_error: "Name is required" }),
+    name: string({ required_error: "Name is required" }).trim().min(1),
     password: string({ required_error: "password is required" }).min(
       6,
-      "Password too short - should be 6 characters minimum"
+      "Password too short - should be 6 characters minimum",
     ),
     passwordConfirmation: string({
       required_error: "password confirmation is required",

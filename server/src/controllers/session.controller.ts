@@ -42,14 +42,14 @@ export async function createSessionHandler(
   return res.send({ accessToken, refreshToken });
 }
 
-export async function getSessionsHandler(req: Request, res: Response) {
+export async function getSessionsHandler(_req: Request, res: Response) {
   const user: UserDocument = res.locals.user;
   const sessions = await findSessions({ user: user._id, valid: true });
 
   return res.send(sessions);
 }
 
-export async function deleteSessionHandler(req: Request, res: Response) {
+export async function deleteSessionHandler(_req: Request, res: Response) {
   const session = res.locals.user.session;
 
   await updateSession({ _id: session }, { valid: false });

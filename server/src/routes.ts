@@ -23,7 +23,7 @@ import {
 } from "./controllers/product.controller";
 
 function routes(app: Express) {
-  app.get("/healthcheck", (req: Request, res: Response) => {
+  app.get("/healthcheck", (_req: Request, res: Response) => {
     return res.sendStatus(200);
   });
 
@@ -32,7 +32,7 @@ function routes(app: Express) {
   app.post(
     "/api/sessions",
     validateResource(createSessionSchema),
-    createSessionHandler
+    createSessionHandler,
   );
 
   app.get("/api/sessions", requireUser, getSessionsHandler);
@@ -42,25 +42,25 @@ function routes(app: Express) {
   app.get(
     "/api/product/:productId",
     [requireUser, validateResource(findProductSchema)],
-    findProductHandler
+    findProductHandler,
   );
 
   app.post(
     "/api/products",
     [requireUser, validateResource(createProductSchema)],
-    createProductHandler
+    createProductHandler,
   );
 
   app.put(
     "/api/products/:productId",
     [requireUser, validateResource(updateProductSchema)],
-    updateProductHandler
+    updateProductHandler,
   );
 
   app.delete(
     "/api/product/:productId",
     validateResource(deleteProductSchema),
-    deleteProductHandler
+    deleteProductHandler,
   );
 }
 
