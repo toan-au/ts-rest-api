@@ -1,7 +1,7 @@
 import { TypeOf, object, number, string } from "zod";
 
 const productPayload = {
-  body: object({
+  body: Object({
     title: string({ required_error: "Email is required" }).min(
       2,
       "Description should be atleast 2 characters long"
